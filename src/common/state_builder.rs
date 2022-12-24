@@ -10,6 +10,6 @@ pub trait StateBuilder
     fn add_float(&mut self) -> StateRef;
     fn add_long(&mut self) -> StateRef;
 
-    fn get_state(&self) -> dyn State;
-    fn get_size(&self) -> u32;
+    fn get_state(&self) -> Box<dyn State>;
+    fn get_size(&self) -> usize;
 }
