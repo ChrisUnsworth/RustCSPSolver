@@ -1,6 +1,5 @@
 use crate::common::state_builder::StateBuilder;
 use crate::common::state_ref::StateRef;
-use crate::common::state::State;
 use crate::state::int_state::IntState;
 
 pub struct IntStateBuilder {
@@ -52,7 +51,7 @@ impl IntStateBuilder {
     }
 }
 
-impl StateBuilder for IntStateBuilder {
+impl StateBuilder<IntState> for IntStateBuilder {
     fn add_domain(&mut self, size: u16) -> StateRef {
         return if size < 32 {
             self.add_small_domain(size as u8)
@@ -89,8 +88,8 @@ impl StateBuilder for IntStateBuilder {
         StateRef { idx, offset: 0 }
     }
 
-    fn get_state(&self) -> Box<dyn State> {
-        Box::new(IntState { data: vec![ 0; self.size ] })
+    fn get_state(&self) -> IntState {
+        IntState { data: vec![ 0; self.size ] }
     }
 
     fn get_size(&self) -> usize { 

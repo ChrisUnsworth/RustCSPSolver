@@ -1,6 +1,8 @@
 use crate::common::state_ref::StateRef;
 
-pub trait State {
+pub trait State<T> {
+    fn copy_to(&self, other: &mut T);
+
     fn get_int(&self, idx: &StateRef) -> i32;
     fn set_int(&mut self, idx: &StateRef, value: i32);
     

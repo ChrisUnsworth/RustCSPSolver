@@ -1,7 +1,7 @@
 use crate::common::state_ref::StateRef;
 use crate::common::state::State;
 
-pub trait StateBuilder
+pub trait StateBuilder<T: State<T>>
 {
     fn add_domain(&mut self, size: u16) -> StateRef;
 
@@ -10,6 +10,6 @@ pub trait StateBuilder
     fn add_float(&mut self) -> StateRef;
     fn add_long(&mut self) -> StateRef;
 
-    fn get_state(&self) -> Box<dyn State>;
+    fn get_state(&self) -> T;
     fn get_size(&self) -> usize;
 }
