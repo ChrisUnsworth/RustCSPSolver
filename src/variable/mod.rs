@@ -1,0 +1,1 @@
+pub mod int_small_domain_var;
